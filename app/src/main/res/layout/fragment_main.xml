@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.aaron.weatherapp.MainActivityFragment"
+    tools:showIn="@layout/activity_main"
+    android:background="@drawable/great_weather">
+
+    <TextView
+        android:id="@+id/weather_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textSize="34sp"
+        android:typeface="serif"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:text="@string/weather_message"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/weather_text"
+        android:layout_marginTop="50dp">
+    <EditText
+        android:id="@+id/city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:typeface="serif"
+        android:hint="@string/city_hint_text"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="#FFFFFF"/>
+    <EditText
+        android:id="@+id/country"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:typeface="serif"
+        android:hint="@string/country_hint_text"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="#FFFFFF"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/current_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:typeface="serif"
+        android:textStyle="bold"
+        android:text="@string/current_weather"
+        android:layout_marginBottom="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
