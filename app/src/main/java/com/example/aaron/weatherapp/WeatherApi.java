@@ -16,7 +16,7 @@ import retrofit.http.Url;
  */
 public interface WeatherApi {
     @GET("/data/2.5/weather?q={city name},{country code}&APPID=e8060058ae43938791ea026093e2c8da")
-    Call<WeatherData> getCurrentCityWeather(@Query("city name") String cityName,
-                                            @Query("country code") String countryCode);
+    Call<WeatherData> getCurrentCityWeather(@Query("q") String cityName,
+                                            @Query("q")String countryCode);
 }
 

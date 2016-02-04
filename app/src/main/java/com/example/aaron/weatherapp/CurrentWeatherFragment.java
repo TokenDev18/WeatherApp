@@ -37,6 +37,7 @@ public class CurrentWeatherFragment extends Fragment {
     private double kelvinToCelsius;
     private int celsiusToFahrenheit;
     private String cityName, countryCode;
+    CurrentWeatherFragment cFrag;
 
     @Nullable
     @Override
@@ -58,13 +59,6 @@ public class CurrentWeatherFragment extends Fragment {
         this.countryCode = countryCode;
         Log.d("flow", "This city and country code: " + this.cityName + "," + this.countryCode);
         setUpRetrofit();
-
-        CurrentWeatherFragment cFrag = new CurrentWeatherFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.parent, cFrag);
-        transaction.addToBackStack(null);
-        transaction.commit();
-
     }
 
     public void setUpRetrofit() {
