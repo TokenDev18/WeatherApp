@@ -24,7 +24,7 @@ public class MainActivityFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         cityEditText = (EditText) view.findViewById(R.id.city);
-        countryEditText = (EditText) view.findViewById(R.id.country);
+        //countryEditText = (EditText) view.findViewById(R.id.country);
 
         setButton = (Button) view.findViewById(R.id.set_button);
         setButton.setOnClickListener(onButtonClicked);
@@ -33,7 +33,7 @@ public class MainActivityFragment extends Fragment {
     }
 
     public interface OnCurrentWeather {
-        void currentWeather(String cityName, String countryCode);
+        void currentWeather(String cityName);
     }
 
     @Override
@@ -51,12 +51,12 @@ public class MainActivityFragment extends Fragment {
         public void onClick(View v) {
 
             cityName = cityEditText.getText().toString();
-            countryCode = countryEditText.getText().toString();
+            //countryCode = countryEditText.getText().toString();
 
             cityEditText.getText().clear();
-            countryEditText.getText().clear();
+            //countryEditText.getText().clear();
 
-            mCurrentWeather.currentWeather(cityName, countryCode);
+            mCurrentWeather.currentWeather(cityName);
         }
     };
 }

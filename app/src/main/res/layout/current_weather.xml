@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#A0BCE4"
-    android:id="@+id/current_layout">
+    android:id="@+id/current_layout"
+    android:clickable="true">
 
     <ImageView
         android:id="@+id/weather_image"

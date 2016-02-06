@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
 
     Button weatherButton;
     private String cityName = "";
-    private String countryCode = "";
+    //private String countryCode = "";
     CurrentWeatherFragment currentFrag;
 
     @Override
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
     View.OnClickListener onWeatherButtonClicked = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if(cityName.equals("") && countryCode.equals("")){
+            if(cityName.equals("")){
                 final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setMessage(R.string.cityNcoutry_notSet);
                 builder.setTitle("City and Country Not Set");
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
                 builder.show();
             } else {
                 currentFrag = new CurrentWeatherFragment();
-                currentFrag.getCityAndCountryCode(cityName, countryCode);
+                currentFrag.getCityAndCountryCode(cityName);
 
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.parent, currentFrag);
@@ -59,10 +59,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
     };
 
     @Override
-    public void currentWeather(String cityName, String countryCode) {
-        Log.d("flow", "The city and countryCode: " + cityName + countryCode);
+    public void currentWeather(String cityName) {
+        Log.d("flow", "The city and countryCode: " + cityName);
         this.cityName = cityName;
-        this.countryCode = countryCode;
+        //this.countryCode = countryCode;
     }
 
     @Override

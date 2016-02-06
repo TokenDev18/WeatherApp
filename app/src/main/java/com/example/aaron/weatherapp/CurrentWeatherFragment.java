@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.aaron.weatherapp.WeatherData.WeatherData;
 import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
 import retrofit.Call;
@@ -27,6 +28,7 @@ import retrofit.Retrofit;
 public class CurrentWeatherFragment extends Fragment {
 
     private static final String WEATHER_URL = "http://api.openweathermap.org";
+    private static final String API_KEY = "e8060058ae43938791ea026093e2c8da";
     private TextView tempTextView;
     private TextView conditionTextView;
     private TextView humidityTextValue;
@@ -36,8 +38,8 @@ public class CurrentWeatherFragment extends Fragment {
     private double kelvin;
     private double kelvinToCelsius;
     private int celsiusToFahrenheit;
-    private String cityName, countryCode;
-    CurrentWeatherFragment cFrag;
+    private String cityName;
+
 
     @Nullable
     @Override
@@ -54,10 +56,10 @@ public class CurrentWeatherFragment extends Fragment {
         return view;
     }
 
-    public void getCityAndCountryCode(String cityName, String countryCode){
+    public void getCityAndCountryCode(String cityName){
         this.cityName = cityName;
-        this.countryCode = countryCode;
-        Log.d("flow", "This city and country code: " + this.cityName + "," + this.countryCode);
+        //this.countryCode = countryCode;
+        Log.d("flow", "This city and country code: " + this.cityName);
         setUpRetrofit();
     }
 
@@ -78,7 +80,7 @@ public class CurrentWeatherFragment extends Fragment {
 
         WeatherApi apiWeather = retrofit.create(WeatherApi.class);
 
-        Call<WeatherData> api  = apiWeather.getCurrentCityWeather(this.cityName, this.countryCode);
+        Call<WeatherData> api  = apiWeather.getCurrentCityWeather(this.cityName, API_KEY);
 
                 api.enqueue(new Callback<WeatherData>() {
                     @Override
