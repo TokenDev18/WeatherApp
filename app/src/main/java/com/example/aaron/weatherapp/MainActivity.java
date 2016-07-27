@@ -15,10 +15,10 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements MainActivityFragment.OnCurrentWeather{
 
-    Button weatherButton;
+    private Button weatherButton;
     private String cityName = "";
-    //private String countryCode = "";
     CurrentWeatherFragment currentFrag;
+    private boolean backPressed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
                 builder.show();
             } else {
                 currentFrag = new CurrentWeatherFragment();
-                currentFrag.getCityAndCountryCode(cityName);
+                currentFrag.getCity(cityName);
 
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.parent, currentFrag);
@@ -57,6 +57,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
             }
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        backPressed = true;
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.popBackStack();
+
+        if(backPressed && fragmentManager.getBackStackEntryCount() == 0){
+            finish();
+        }
+    }
 
     @Override
     public void currentWeather(String cityName) {

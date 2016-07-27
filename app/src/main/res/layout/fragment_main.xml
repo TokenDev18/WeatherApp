@@ -22,52 +22,42 @@
         android:textStyle="bold"
         android:text="@string/weather_message"/>
 
-    <LinearLayout
-        android:id="@+id/layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/weather_text"
-        android:layout_marginTop="50dp">
     <EditText
         android:id="@+id/city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:typeface="serif"
+        android:layout_marginTop="150dp"
         android:hint="@string/city_hint_text"
         android:textColor="@color/colorAccent"
         android:textColorHint="#FFFFFF"/>
-    <EditText
-        android:id="@+id/country"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:typeface="serif"
-        android:hint="@string/country_hint_text"
-        android:textColor="@color/colorAccent"
-        android:textColorHint="#FFFFFF"/>
-    </LinearLayout>
 
-    <Button
-        android:id="@+id/set_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:typeface="serif"
-        android:textStyle="bold"
-        android:text="@string/set_cityNcountry"
-        android:layout_marginTop="20dp"
-        android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true" />
+        <Button
+            android:id="@+id/set_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:typeface="serif"
+            android:textStyle="bold"
+            android:text="@string/set_cityNcountry"
+            android:layout_marginBottom="70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/button"
+            android:layout_toStartOf="@+id/button"
+            android:layout_marginRight="38dp"
+            android:layout_marginEnd="38dp" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:typeface="serif"
-        android:textStyle="bold"
-        android:text="@string/get_weather"
-        android:layout_marginBottom="60dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/button" />
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:typeface="serif"
+            android:textStyle="bold"
+            android:text="@string/get_weather"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignTop="@+id/set_button"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="47dp"
+            android:layout_marginEnd="47dp" />
 
 </RelativeLayout>

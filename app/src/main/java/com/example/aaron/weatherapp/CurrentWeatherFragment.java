@@ -2,6 +2,7 @@ package com.example.aaron.weatherapp;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.graphics.Path;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -15,6 +16,13 @@ import com.example.aaron.weatherapp.WeatherData.WeatherData;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -32,14 +40,14 @@ public class CurrentWeatherFragment extends Fragment {
     private TextView tempTextView;
     private TextView conditionTextView;
     private TextView humidityTextValue;
-    private TextView precipitationTextValue;
     private TextView windTextValue;
     private ImageView weatherImage;
     private double kelvin;
     private double kelvinToCelsius;
     private int celsiusToFahrenheit;
     private String cityName;
-
+    private double metersPerSecond, milesPerHour;
+    private int newMPH;
 
     @Nullable
     @Override
@@ -50,16 +58,16 @@ public class CurrentWeatherFragment extends Fragment {
         weatherImage = (ImageView) view.findViewById(R.id.weather_image);
         conditionTextView = (TextView) view.findViewById(R.id.condition_text);
         humidityTextValue = (TextView) view.findViewById(R.id.humidity_value);
-        precipitationTextValue = (TextView) view.findViewById(R.id.precipitation_value);
         windTextValue = (TextView) view.findViewById(R.id.wind_value);
 
         return view;
     }
 
-    public void getCityAndCountryCode(String cityName){
+    protected void getCity(String cityName){
         this.cityName = cityName;
         //this.countryCode = countryCode;
         Log.d("flow", "This city and country code: " + this.cityName);
+        Log.d("directory", "User Directory: " + System.getProperty("user.dir"));
         setUpRetrofit();
     }
 
@@ -86,13 +94,16 @@ public class CurrentWeatherFragment extends Fragment {
                     @Override
                     public void onResponse(Response<WeatherData> response, Retrofit retrofit) {
                         kelvin = response.body().getMain().getTemp();
-                        Log.d("kelvin", "Tempurate in kelvin is: " + kelvin);
+                        metersPerSecond = response.body().getWind().getSpeed();
+                        Log.d("kelvin", "Temperature in kelvin is: " + kelvin);
                         kelvinToCelsius = kelvin - 273.15;
                         celsiusToFahrenheit = (int) (kelvinToCelsius * 1.8) + 32;
+                        milesPerHour = metersPerSecond * 2.236936;
+                        newMPH = (int) milesPerHour;
                         tempTextView.setText(Integer.toString(celsiusToFahrenheit) + "\u2109");
                         conditionTextView.setText(response.body().getWeather().get(0).getMain());
-                        humidityTextValue.setText(Integer.toString(response.body().getMain().getHumidity()));
-                        //windTextValue.setText(response.body().);
+                        humidityTextValue.setText(Integer.toString(response.body().getMain().getHumidity()) + "%");
+                        windTextValue.setText(Integer.toString(newMPH) + "mph");
 
                         switch (response.body().getWeather().get(0).getIcon()) {
                             case "01d":
